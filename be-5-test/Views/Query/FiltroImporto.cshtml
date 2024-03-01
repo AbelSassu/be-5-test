@@ -2,16 +2,16 @@
     ViewData["Title"] = "Verbali > 400€";
 }
 
-<h2>Verbali con Importo di Pagamento Superiore a 400€</h2>
+<h2 class="mt-3 mb-4">Verbali con Importo di Pagamento Superiore a 400€</h2>
 
 
 @if (Model is null)
 {
-    <h3>Non ci sono verbali sul database</h3>
+    <h2 class="mt-3 mb-4">Non ci sono verbali sul database</h2>
 }
 else
 {
-    <table class="table">
+    <table class="table mb-5">
         <thead>
             <tr>
                 <th scope="col">Nome</th>
@@ -26,11 +26,11 @@ else
             @foreach (var multa in Model)
             {
                 <tr>
-                    <td scope="col">@multa.Nome</td>
-                    <td scope="col">@multa.Cognome</td>
-                    <td scope="col">@multa.DataViolazione.ToShortDateString()</td>
-                    <td scope="col">@multa.DecurtamentoPunti</td>
-                    <td scope="col">@multa.Importo.ToString("#,0.##") €</td>
+                    <td>@multa.Nome</td>
+                    <td>@multa.Cognome</td>
+                    <td>@multa.DataViolazione.ToShortDateString()</td>
+                    <td>@multa.DecurtamentoPunti</td>
+                    <td>@multa.Importo.ToString("#,0.##") €</td>
                 </tr>
             }
         </tbody>

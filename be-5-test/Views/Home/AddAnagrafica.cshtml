@@ -4,35 +4,37 @@
 
 @model Anagrafica
 
-<h2>Aggiungi Trasgressore</h2>
+<h2 class="mb-5 mt-3">Aggiungi Trasgressore</h2>
 
 <form class="row g-3" asp-controller="Home" asp-action="AddAnagrafica" method="post">
     <div class="col-md-6">
         <label asp-for="@Model.Nome" class="form-label"></label>
-        <input type="text" class="form-control" asp-for="@Model.Nome">
+        <input type="text" class="form-control" asp-for="@Model.Nome" required>
     </div>
     <div class="col-md-6">
         <label asp-for="@Model.Cognome" class="form-label"></label>
-        <input type="text" class="form-control" asp-for="@Model.Cognome">
-    </div>
-    <div class="col-12">
-        <label asp-for="@Model.Indirizzo" class="form-label"></label>
-        <input type="text" class="form-control" asp-for="@Model.Indirizzo">
-    </div>
-    <div class="col-12">
-        <label asp-for="@Model.Citta" class="form-label">Città</label>
-        <input type="text" class="form-control" asp-for="@Model.Citta">
-    </div>
-    <div class="col-md-6">
-        <label asp-for="@Model.CAP" class="form-label"></label>
-        <input type="text" class="form-control" asp-for="@Model.CAP" maxlength="5">
+        <input type="text" class="form-control" asp-for="@Model.Cognome" required>
     </div>
     <div class="col-md-6">
         <label asp-for="@Model.Cod_Fisc" class="form-label">Codice Fiscale</label>
-        <input type="text" class="form-control" asp-for="@Model.Cod_Fisc" maxlength="16">
+        <input type="text" class="form-control" asp-for="@Model.Cod_Fisc" maxlength="16" min="16" required>
     </div>
 
-    <div class="col-12">
+    <div class="col-6">
+        <label asp-for="@Model.Citta" class="form-label">Città</label>
+        <input type="text" class="form-control" asp-for="@Model.Citta" required>
+    </div>
+    <div class="col-8 mb-4">
+        <label asp-for="@Model.Indirizzo" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="@Model.Indirizzo" required>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="@Model.CAP" class="form-label"></label>
+        <input type="text" class="form-control" asp-for="@Model.CAP" maxlength="5" required>
+    </div>
+
+
+    <div class="col-12 text-center mb-5">
         <button class="btn btn-outline-success">Aggiungi</button>
     </div>
 </form>

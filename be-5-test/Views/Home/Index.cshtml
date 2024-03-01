@@ -18,15 +18,15 @@
 
 
 
-<h2>Verbali</h2>
+<h2 class="mt-3 mb-4">Verbali</h2>
 
 @if (Model is null)
 {
-    <h3>Non ci sono verbali sul database</h3>
+    <h2 class="mt-3 mb-4">Non ci sono verbali sul database</h2>
 }
 else
 {
-    <table class="table">
+    <table class="table mb-5">
         <thead>
             <tr>
                 <th scope="col">Id</th>
@@ -43,19 +43,20 @@ else
         <tbody>
             @foreach (var multa in Model)
             {
-                <tr>
-                    <td scope="col">@multa.IDVerbale</td>
-                    <td scope="col">@multa.DataViolazione.ToShortDateString()</td>
-                    <td scope="col">@multa.IndirizzoViolazione</td>
-                    <td scope="col">@multa.Nominativo_Agente</td>
-                    <td scope="col">@multa.DataTrascrizioneVerbale.ToShortDateString()</td>
-                    <td scope="col">@multa.Importo.ToString("#,00.##")</td>
-                    <td scope="col">@multa.DecurtamentoPunti</td>
-                    <td scope="col" class="text-nowrap">@multa.Descrizione</td>
-                    <td scope="col">
-                        <a class="btn btn-outline-secondary text-nowrap" asp-controller="Home" asp-action="Anagrafica" asp-route-id="@multa.IDAnagrafica">Anagrafica Trasgressore</a>
-                    </td>
-                </tr>
+<tr>
+    <td scope="col" style="text-align: center; vertical-align: middle;">@multa.IDVerbale</td>
+    <td scope="col" style="text-align: center; vertical-align: middle;">@multa.DataViolazione.ToShortDateString()</td>
+    <td scope="col" style="text-align: center; vertical-align: middle;">@multa.IndirizzoViolazione</td>
+    <td scope="col" style="text-align: center; vertical-align: middle;">@multa.Nominativo_Agente</td>
+    <td scope="col" style="text-align: center; vertical-align: middle;">@multa.DataTrascrizioneVerbale.ToShortDateString()</td>
+    <td scope="col" style="text-align: center; vertical-align: middle;">@multa.Importo.ToString("#,00.##")</td>
+    <td scope="col" style="text-align: center; vertical-align: middle;">@multa.DecurtamentoPunti</td>
+    <td scope="col" class="text-nowrap" style="text-align: center; vertical-align: middle;">@multa.Descrizione</td>
+    <td scope="col" style="text-align: center; vertical-align: middle;">
+        <a class="btn btn-outline-secondary text-nowrap" asp-controller="Home" asp-action="Anagrafica" asp-route-id="@multa.IDAnagrafica">Anagrafica Trasgressore</a>
+    </td>
+</tr>
+
             }
         </tbody>
     </table>

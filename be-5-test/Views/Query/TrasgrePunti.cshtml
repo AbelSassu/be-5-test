@@ -2,15 +2,15 @@
     ViewData["Title"] = "Totale punti ";
 }
 
-<h2>Totale punti decurtati per trasgressore</h2>
+<h2 class="mb-5 mt-3">Totale punti decurtati per trasgressore</h2>
 
 @if (Model is null)
 {
-    <h3>Non ci sono verbali sul database</h3>
+    <h2 class="mb-5 mt-3">Non ci sono verbali sul database</h2>
 }
 else
 {
-    <table class="table">
+    <table class="table mb-5">
         <thead>
             <tr>
                 <th scope="col">Id Anagrafica</th>
@@ -23,10 +23,10 @@ else
             @foreach (var multa in Model)
             {
                 <tr>
-                    <td scope="col">@multa.IDAnagrafica</td>
-                    <td scope="col">@multa.Nome</td>
-                    <td scope="col">@multa.Cognome</td>
-                    <td scope="col">@multa.Totale</td>
+                    <td>@multa.IDAnagrafica</td>
+                    <td>@multa.Nome</td>
+                    <td>@multa.Cognome</td>
+                    <td>@multa.Totale</td>
 
                 </tr>
             }
