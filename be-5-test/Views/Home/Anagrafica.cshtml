@@ -1,6 +1,13 @@
 ﻿@{
     ViewData["Title"] = "Anagrafica";
 }
+@if (TempData["MessageSuccess"] is not null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["MessageSuccess"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 
 <h2 class="mt-3 mb-4">Anagrafica</h2>
 

@@ -224,13 +224,18 @@ namespace be_5_test.Controllers
         public IActionResult AddAnagrafica(Anagrafica utente)
         {
             var error = true;
+            int lastInsertedId = 0;
+
             try
-            { 
+            {
 
                 DB.conn.Open();
+
                 var cmd = new SqlCommand(@"INSERT INTO Anagrafica 
-                (Cognome, Nome, Indirizzo, Citta, CAP, Cod_Fisc) VALUES (@nome, @cognome, @indirizzo, 
-                @citta, @cap, @cod_fisc)", DB.conn);
+                                                     (Cognome, Nome, Indirizzo, Citta, CAP, Cod_Fisc)
+                                                     VALUES (@cognome, @nome, @indirizzo, @citta, @cap, @cod_fisc);
+                                                     SELECT SCOPE_IDENTITY()", DB.conn);
+
                 cmd.Parameters.AddWithValue("@cognome", utente.Cognome);
                 cmd.Parameters.AddWithValue("@nome", utente.Nome);
                 cmd.Parameters.AddWithValue("@indirizzo", utente.Indirizzo);
@@ -238,28 +243,40 @@ namespace be_5_test.Controllers
                 cmd.Parameters.AddWithValue("@cap", utente.CAP);
                 cmd.Parameters.AddWithValue("@cod_fisc", utente.Cod_Fisc);
 
-                var nRows = cmd.ExecuteNonQuery();
 
-                if (nRows > 0)
-                { 
+                var identity = cmd.ExecuteScalar();
+
+                if (identity != null)
+                {
+                    lastInsertedId = Convert.ToInt32(identity);
                     error = false;
                 }
+
 
             }
             catch (Exception ex)
             {
-                return View("Index");
+
+                return View("Error");
             }
-            finally { DB.conn.Close(); }
+            finally
+            {
+                DB.conn.Close();
+            }
+
 
             if (!error)
             {
-                TempData["MessageSuccess"] = $"L'utente {utente.Nome} {utente.Cognome} è stat* aggiunt* correttamente all'Anagrafica";
-            } else
-            {
-                TempData["MessageError"] = $"Errore durante il caricamento dell'utente al database";
+                TempData["MessageSuccess"] = $"L'utente {utente.Nome} {utente.Cognome} e' stat* aggiunt* in Anagrafica.";
+                return RedirectToAction("Anagrafica", new { id = lastInsertedId });
             }
-            return RedirectToAction("Index");
+            else
+            {
+                TempData["MessageError"] = $"Errore durante il caricamento nella base dati.";
+                return RedirectToAction("Index");
+            }
+
+
         }
 
 
